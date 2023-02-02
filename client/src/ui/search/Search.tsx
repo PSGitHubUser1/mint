@@ -23,7 +23,6 @@ import { pathToVersionDict } from '@/utils/paths/pathToVersionDict';
 import Icon from '../Icon';
 import { HitLocation } from './HitLocation';
 
-
 let searchClient: SearchClient | null = null;
 let searchIndex: SearchIndex | null = null;
 
@@ -299,7 +298,13 @@ export function SearchProvider({
       });
     }
 
-    setHits(filterHitsToCurrentVersion(searchResult?.hits as Hit[] || [], selectedVersion, pathToVersion));
+    setHits(
+      filterHitsToCurrentVersion(
+        (searchResult?.hits as Hit[]) || [],
+        selectedVersion,
+        pathToVersion
+      )
+    );
   };
 
   const onSelectOption = (hit: Hit) => {
@@ -309,8 +314,8 @@ export function SearchProvider({
       hit._highlightResult.subheading?.matchLevel === 'full'
         ? `#${hit.subheading}`
         : hit._highlightResult.heading?.matchLevel === 'full'
-          ? `#${hit.heading}`
-          : '';
+        ? `#${hit.heading}`
+        : '';
     const sectionSlug = section
       .toLowerCase()
       .replaceAll(' ', '-')
@@ -318,8 +323,6 @@ export function SearchProvider({
     router.push(`/${hit.slug}${sectionSlug}`);
     setHits([]);
   };
-
-
 
   return (
     <>

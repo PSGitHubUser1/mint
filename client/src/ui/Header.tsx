@@ -18,9 +18,6 @@ import Icon from './Icon';
 import { ThemeToggle } from './ThemeToggle';
 import { VersionSelect } from './VersionSelect';
 
-
-
-
 export function NavPopover({
   display = 'md:hidden',
   className,
@@ -311,23 +308,25 @@ export function Header({
                 <VersionSelect />
               </div>
               <div className="relative flex-none bg-white lg:w-64 xl:w-80 dark:bg-slate-900 pointer-events-auto rounded-md">
-                {isSearchEnabled && <SearchButton className="hidden w-full lg:flex items-center text-sm leading-6 rounded-md py-1.5 pl-2 pr-3 zinc-box bg-white ring-1 ring-zinc-400/20 hover:ring-zinc-600/25 dark:ring-zinc-600/30 dark:hover:ring-zinc-500/30">
-                  {({ actionKey }: any) => (
-                    <>
-                      <Icon
-                        icon="magnifying-glass"
-                        iconType="solid"
-                        className="h-4 w-4 ml-1 mr-3 flex-none bg-zinc-500 hover:bg-slate-600 dark:bg-white/50 dark:hover:bg-white/70"
-                      />
-                      Search...
-                      {actionKey && (
-                        <span className="ml-auto flex-none text-xs font-semibold">
-                          {actionKey[0]}K
-                        </span>
-                      )}
-                    </>
-                  )}
-                </SearchButton>}
+                {isSearchEnabled && (
+                  <SearchButton className="hidden w-full lg:flex items-center text-sm leading-6 rounded-md py-1.5 pl-2 pr-3 zinc-box bg-white ring-1 ring-zinc-400/20 hover:ring-zinc-600/25 dark:ring-zinc-600/30 dark:hover:ring-zinc-500/30">
+                    {({ actionKey }: any) => (
+                      <>
+                        <Icon
+                          icon="magnifying-glass"
+                          iconType="solid"
+                          className="h-4 w-4 ml-1 mr-3 flex-none bg-zinc-500 hover:bg-slate-600 dark:bg-white/50 dark:hover:bg-white/70"
+                        />
+                        Search...
+                        {actionKey && (
+                          <span className="ml-auto flex-none text-xs font-semibold">
+                            {actionKey[0]}K
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </SearchButton>
+                )}
               </div>
               <div className="flex-1 relative hidden lg:flex items-center ml-auto justify-end">
                 <nav className="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
