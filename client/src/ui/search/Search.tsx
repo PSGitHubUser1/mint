@@ -1,5 +1,5 @@
 import { Combobox, Dialog, Transition } from '@headlessui/react';
-import algoliasearch from 'algoliasearch';
+import algoliasearch, { SearchClient, SearchIndex } from 'algoliasearch';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import {
@@ -23,8 +23,17 @@ import { pathToVersionDict } from '@/utils/paths/pathToVersionDict';
 import Icon from '../Icon';
 import { HitLocation } from './HitLocation';
 
-const client = algoliasearch('M6VUKXZ4U5', '60f283c4bc8c9feb5c44da3df3c21ce3');
-const index = client.initIndex('docs');
+
+let searchClient: SearchClient | null = null;
+let searchIndex: SearchIndex | null = null;
+
+if (process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY) {
+  console.log("HERE!")
+  searchClient = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY);
+  searchIndex = searchClient.initIndex('docs');
+}
+
+
 
 type SearchInput = {
   key: string;
@@ -285,11 +294,15 @@ export function SearchProvider({
       return;
     }
 
-    const { hits } = await index.search(query, {
-      filters: `orgID:${subdomain} OR customDomains:${subdomain}`,
-    });
+    let searchResult = null;
 
-    setHits(filterHitsToCurrentVersion(hits as Hit[], selectedVersion, pathToVersion));
+    if (searchIndex) {
+      searchResult = await searchIndex.search(query, {
+        filters: `orgID:${subdomain} OR customDomains:${subdomain}`,
+      });
+    }
+
+    setHits(filterHitsToCurrentVersion(searchResult?.hits as Hit[] || [], selectedVersion, pathToVersion));
   };
 
   const onSelectOption = (hit: Hit) => {
@@ -299,8 +312,8 @@ export function SearchProvider({
       hit._highlightResult.subheading?.matchLevel === 'full'
         ? `#${hit.subheading}`
         : hit._highlightResult.heading?.matchLevel === 'full'
-        ? `#${hit.heading}`
-        : '';
+          ? `#${hit.heading}`
+          : '';
     const sectionSlug = section
       .toLowerCase()
       .replaceAll(' ', '-')
@@ -308,6 +321,8 @@ export function SearchProvider({
     router.push(`/${hit.slug}${sectionSlug}`);
     setHits([]);
   };
+
+
 
   return (
     <>
