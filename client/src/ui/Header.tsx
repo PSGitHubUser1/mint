@@ -18,6 +18,9 @@ import Icon from './Icon';
 import { ThemeToggle } from './ThemeToggle';
 import { VersionSelect } from './VersionSelect';
 
+
+
+
 export function NavPopover({
   display = 'md:hidden',
   className,
@@ -274,6 +277,8 @@ export function Header({
     };
   }, [isOpaque]);
 
+  const isSearchEnabled: boolean = !!(process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY);
+
   return (
     <>
       <div className="sticky top-0 w-full backdrop-blur flex-none z-30 lg:border-b lg:border-slate-900/5 dark:border-slate-50/[0.06]">
@@ -306,7 +311,7 @@ export function Header({
                 <VersionSelect />
               </div>
               <div className="relative flex-none bg-white lg:w-64 xl:w-80 dark:bg-slate-900 pointer-events-auto rounded-md">
-                <SearchButton className="hidden w-full lg:flex items-center text-sm leading-6 rounded-md py-1.5 pl-2 pr-3 zinc-box bg-white ring-1 ring-zinc-400/20 hover:ring-zinc-600/25 dark:ring-zinc-600/30 dark:hover:ring-zinc-500/30">
+                {isSearchEnabled && <SearchButton className="hidden w-full lg:flex items-center text-sm leading-6 rounded-md py-1.5 pl-2 pr-3 zinc-box bg-white ring-1 ring-zinc-400/20 hover:ring-zinc-600/25 dark:ring-zinc-600/30 dark:hover:ring-zinc-500/30">
                   {({ actionKey }: any) => (
                     <>
                       <Icon
@@ -322,7 +327,7 @@ export function Header({
                       )}
                     </>
                   )}
-                </SearchButton>
+                </SearchButton>}
               </div>
               <div className="flex-1 relative hidden lg:flex items-center ml-auto justify-end">
                 <nav className="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">

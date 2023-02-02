@@ -32,8 +32,6 @@ if (process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY) {
   searchIndex = searchClient.initIndex('docs');
 }
 
-
-
 type SearchInput = {
   key: string;
 };
