@@ -28,7 +28,6 @@ let searchClient: SearchClient | null = null;
 let searchIndex: SearchIndex | null = null;
 
 if (process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY) {
-  console.log("HERE!")
   searchClient = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY);
   searchIndex = searchClient.initIndex('docs');
 }
