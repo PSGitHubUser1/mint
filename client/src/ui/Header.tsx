@@ -274,7 +274,7 @@ export function Header({
     };
   }, [isOpaque]);
 
-  const isSearchEnabled: boolean = !!(process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY);
+  const isSearchEnabled = !!(process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY);
 
   return (
     <>
