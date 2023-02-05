@@ -3,6 +3,7 @@ import { ReactNode, useContext } from 'react';
 
 import AnalyticsContext from '@/analytics/AnalyticsContext';
 import { ComponentIcon, getIconType } from '@/ui/Icon';
+import { Event } from '@/enums/events';
 
 function Accordion({
   title,
@@ -20,8 +21,8 @@ function Accordion({
   children: ReactNode;
 }) {
   const analyticsMediator = useContext(AnalyticsContext);
-  const trackOpen = analyticsMediator.createEventListener('accordion_open');
-  const trackClose = analyticsMediator.createEventListener('accordion_close');
+  const trackOpen = analyticsMediator.createEventListener(Event.AccordionOpen);
+  const trackClose = analyticsMediator.createEventListener(Event.AccordionClose);
 
   const onChange = (open: boolean) => {
     if (open) {

@@ -17,6 +17,8 @@ import { TopbarCta } from '../types/config';
 import Icon from './Icon';
 import { ThemeToggle } from './ThemeToggle';
 import { VersionSelect } from './VersionSelect';
+import AnalyticsContext from '@/analytics/AnalyticsContext';
+import { Event } from '@/enums/events';
 
 export function NavPopover({
   display = 'md:hidden',
@@ -207,6 +209,12 @@ function TopBarCtaButton({ button }: { button: TopbarCta }) {
 
 export function NavItems() {
   const { mintConfig } = useContext(ConfigContext);
+  const analyticsMediator = useContext(AnalyticsContext);
+  const trackNavigationClick = analyticsMediator.createEventListener(Event.HeaderNavItemClick);
+
+  const onClickNavigation = (name: string | undefined, url: string) => {
+    trackNavigationClick({ name, url })
+  }
 
   return (
     <>
@@ -218,6 +226,7 @@ export function NavItems() {
             <li key={topbarLink.name}>
               <a
                 href={topbarLink.url}
+                onClick={() => onClickNavigation(topbarLink.name, topbarLink.url)}
                 className="font-medium hover:text-primary dark:hover:text-primary-light"
               >
                 {topbarLink.name}
@@ -229,6 +238,7 @@ export function NavItems() {
             <li key={topbarLink.name}>
               <Link
                 href={topbarLink.url ?? '/'}
+                onClick={() => onClickNavigation(topbarLink.name, topbarLink.url)}
                 className="font-medium hover:text-primary dark:hover:text-primary-light"
               >
                 {topbarLink.name}
