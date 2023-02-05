@@ -4,7 +4,9 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState, useContext } from 'react';
 
+import AnalyticsContext from '@/analytics/AnalyticsContext';
 import { ConfigContext } from '@/context/ConfigContext';
+import { Event } from '@/enums/events';
 import {
   extractBaseAndPath,
   extractMethodAndEndpoint,
@@ -45,6 +47,8 @@ export function ApiPlayground({
   const { mintConfig, openApiFiles } = useContext(ConfigContext);
   const [apiBaseIndex, setApiBaseIndex] = useState(0);
   const { method, endpoint } = extractMethodAndEndpoint(api);
+  const analyticsMediator = useContext(AnalyticsContext);
+  const trackApiPlaygroundCall = analyticsMediator.createEventListener(Event.APIPlaygroundCall);
 
   let base = '';
   let path = '';
@@ -113,6 +117,15 @@ export function ApiPlayground({
         method,
         ...apiContext,
       });
+
+      trackApiPlaygroundCall({
+        request: {
+          method,
+          ...apiContext,
+        },
+        response: data.response,
+      });
+
       setApiResponse(data.highlightedJson);
     } catch (error: any) {
       setApiResponse(error.highlightedJson);

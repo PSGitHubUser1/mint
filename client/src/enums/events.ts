@@ -4,4 +4,5 @@ export enum Event {
   HeaderNavItemClick = 'header_nav_item_click',
   CTAClick = 'cta_click',
   ScrollToBottom = 'scroll_to_bottom',
+  APIPlaygroundCall = 'api_playground_call',
 }
