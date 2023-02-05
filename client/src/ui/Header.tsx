@@ -100,6 +100,8 @@ export function NavPopover({
 
 function GitHubCta({ button }: { button: TopbarCta }) {
   const [repoData, setRepoData] = useState<{ stargazers_count: number; forks_count: number }>();
+  const analyticsMediator = useContext(AnalyticsContext);
+  const trackCtaClick = analyticsMediator.createEventListener(Event.CTAClick);
 
   const github = gh(button.url);
 
@@ -120,7 +122,7 @@ function GitHubCta({ button }: { button: TopbarCta }) {
 
   return (
     <li className="cursor-pointer">
-      <a href={button.url} target="_blank" rel="noreferrer">
+      <a href={button.url} target="_blank" rel="noreferrer" onClick={() => trackCtaClick({ url: 'button.url', type: 'github' })}>
         <div className="group flex items-center space-x-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -171,6 +173,9 @@ function GitHubCta({ button }: { button: TopbarCta }) {
 }
 
 function TopBarCtaButton({ button }: { button: TopbarCta }) {
+  const analyticsMediator = useContext(AnalyticsContext);
+  const trackCtaClick = analyticsMediator.createEventListener(Event.CTAClick);
+
   if (button.type === 'github') {
     return <GitHubCta button={button} />;
   }
@@ -182,6 +187,7 @@ function TopBarCtaButton({ button }: { button: TopbarCta }) {
           href={button.url ?? '/'}
           target="_blank"
           className="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium"
+          onClick={() => trackCtaClick({ name: button.name, url: button.url })}
         >
           <span className="absolute z-0 inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
           <span className="z-10 mr-2 text-white">{button.name}</span>
