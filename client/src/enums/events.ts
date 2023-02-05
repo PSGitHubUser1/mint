@@ -5,4 +5,5 @@ export enum Event {
   CTAClick = 'cta_click',
   ScrollToBottom = 'scroll_to_bottom',
   APIPlaygroundCall = 'api_playground_call',
+  SearchResultClick = 'search_result_click',
 }

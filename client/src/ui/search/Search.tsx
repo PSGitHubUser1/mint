@@ -14,8 +14,10 @@ import {
 } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
+import AnalyticsContext from '@/analytics/AnalyticsContext';
 import { ConfigContext } from '@/context/ConfigContext';
 import { VersionContext } from '@/context/VersionContext';
+import { Event } from '@/enums/events';
 import { useActionKey } from '@/hooks/useActionKey';
 import { pathToBreadcrumbs } from '@/utils/paths/pathToBreadcrumbs';
 import { pathToVersionDict } from '@/utils/paths/pathToVersionDict';
@@ -256,6 +258,8 @@ export function SearchProvider({
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState<string>('');
   const [hits, setHits] = useState<Hit[]>([]);
+  const analyticsMediator = useContext(AnalyticsContext);
+  const trackSearchResultClick = analyticsMediator.createEventListener(Event.SearchResultClick);
 
   useHotkeys('cmd+k', (e) => {
     e.preventDefault();
@@ -295,6 +299,7 @@ export function SearchProvider({
   const onSelectOption = (hit: Hit) => {
     onClose();
 
+    const url = `/${hit.slug}`;
     const section =
       hit._highlightResult.subheading?.matchLevel === 'full'
         ? `#${hit.subheading}`
@@ -305,7 +310,13 @@ export function SearchProvider({
       .toLowerCase()
       .replaceAll(' ', '-')
       .replaceAll(/[^a-zA-Z0-9-_#]/g, '');
-    router.push(`/${hit.slug}${sectionSlug}`);
+    router.push(`${url}${sectionSlug}`);
+
+    trackSearchResultClick({
+      url,
+      section: sectionSlug ? sectionSlug : undefined,
+    });
+
     setHits([]);
   };
 
