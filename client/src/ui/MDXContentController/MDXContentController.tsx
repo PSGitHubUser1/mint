@@ -1,11 +1,14 @@
 import { MDXProvider } from '@mdx-js/react';
 import clsx from 'clsx';
-import { createContext, useContext, useState } from 'react';
+import Router from 'next/router';
+import { createContext, useContext, useEffect, useState } from 'react';
 
+import AnalyticsContext from '@/analytics/AnalyticsContext';
 import { DynamicLink } from '@/components/DynamicLink';
 import { Heading } from '@/components/Heading';
 import { ConfigContext } from '@/context/ConfigContext';
 import { Component } from '@/enums/components';
+import { Event } from '@/enums/events';
 import { useCurrentPath } from '@/hooks/useCurrentPath';
 import { usePrevNext } from '@/hooks/usePrevNext';
 import { useTableOfContents } from '@/hooks/useTableOfContents';
@@ -48,7 +51,6 @@ export function MDXContentController({
   const [apiBaseIndex, setApiBaseIndex] = useState(0);
   const currentPath = useCurrentPath();
   const toc = [...tableOfContents];
-
   const { currentTableOfContentsSection, registerHeading, unregisterHeading } =
     useTableOfContents(toc);
   const { prev, next } = usePrevNext();
@@ -74,6 +76,31 @@ export function MDXContentController({
   } else if (isWideSize) {
     contentWidth = 'max-w-3xl';
   }
+
+  const analyticsMediator = useContext(AnalyticsContext);
+  const trackScrollToBottom = analyticsMediator.createEventListener(Event.ScrollToBottom);
+
+  const checkIfAtBottomOfPage = (): boolean => {
+    const BOTTOM_OFFSET = 40;
+    return window.innerHeight + window.scrollY >= document.body.offsetHeight - BOTTOM_OFFSET;
+  };
+
+  // Log event when scroll to bottom
+  useEffect(() => {
+    if (checkIfAtBottomOfPage()) {
+      trackScrollToBottom({ url: Router.asPath });
+      return;
+    }
+
+    const onScroll = () => {
+      if (checkIfAtBottomOfPage()) {
+        trackScrollToBottom({ url: Router.asPath });
+        window.removeEventListener('scroll', onScroll);
+      }
+    };
+    window.addEventListener('scroll', onScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const paramGroupDict = getParamGroupsFromApiComponents(
     openApiPlaygroundProps.apiComponents ?? apiComponents,
