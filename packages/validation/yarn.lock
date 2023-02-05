@@ -1215,10 +1215,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@mintlify/ts-config@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@mintlify/ts-config/-/ts-config-1.0.3.tgz#d5e04e61a8e341622d2cb0ff827a7f39b4ade00f"
-  integrity sha512-JKfBhPWLRiuJxYCGofX3crGMZgSMYhispKCishklBt1hfkYdHVvUkzQ0PybU7vKI0ACkztVC0qgtWq3WVOKZlg==
+"@mintlify/ts-config@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@mintlify/ts-config/-/ts-config-1.0.4.tgz#aed0696804c03cfb89102d1fe93edb0d24f7ac4a"
+  integrity sha512-VsmdhlfNvdt/1H28OC1s7fIveoeOeN7DFKjw8xLka4M1PhFQ16smg/idefCT2P6ajsXJwlCTES/pZrxbEE0RbQ==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"

@@ -47,7 +47,7 @@
     "yargs": "^17.6.0"
   },
   "devDependencies": {
-    "@mintlify/ts-config": "1.0.3",
+    "@mintlify/ts-config": "1.0.4",
     "@tsconfig/next": "1.x",
     "@types/cheerio": "^0.22.31",
     "@types/fs-extra": "^9.0.13",

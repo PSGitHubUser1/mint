@@ -1,8 +1,7 @@
 {
   "extends": "@mintlify/ts-config",
   "compilerOptions": {
-    "noEmit": false,
-    "outDir": "dist"
+    "noEmit": false
   },
   "include": ["src/**/*"]
 }

@@ -1700,10 +1700,10 @@
   resolved "https://registry.yarnpkg.com/@mintlify/prettier-config/-/prettier-config-1.0.1.tgz#d1c4b2b3d5078e4a2872f96cfa4ed1b60b332f6c"
   integrity sha512-43rARzj4Xc5ZOuLS3VqgUv3QZVSSSrNaOhFgLWNUyliihj4U7oMk7ZwzriNsa5q02GGgyD84R2cI4OY/6ytAuQ==
 
-"@mintlify/ts-config@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@mintlify/ts-config/-/ts-config-1.0.3.tgz#d5e04e61a8e341622d2cb0ff827a7f39b4ade00f"
-  integrity sha512-JKfBhPWLRiuJxYCGofX3crGMZgSMYhispKCishklBt1hfkYdHVvUkzQ0PybU7vKI0ACkztVC0qgtWq3WVOKZlg==
+"@mintlify/ts-config@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@mintlify/ts-config/-/ts-config-1.0.4.tgz#aed0696804c03cfb89102d1fe93edb0d24f7ac4a"
+  integrity sha512-VsmdhlfNvdt/1H28OC1s7fIveoeOeN7DFKjw8xLka4M1PhFQ16smg/idefCT2P6ajsXJwlCTES/pZrxbEE0RbQ==
 
 "@next/bundle-analyzer@12.3.4":
   version "12.3.4"
