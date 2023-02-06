@@ -2,8 +2,8 @@ import { Accordion as GenericAccordion } from '@mintlify/components';
 import { ReactNode, useContext } from 'react';
 
 import AnalyticsContext from '@/analytics/AnalyticsContext';
-import { ComponentIcon, getIconType } from '@/ui/Icon';
 import { Event } from '@/enums/events';
+import { ComponentIcon, getIconType } from '@/ui/Icon';
 
 function Accordion({
   title,

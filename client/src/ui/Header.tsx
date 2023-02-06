@@ -8,7 +8,9 @@ import Router from 'next/router';
 import { useContext } from 'react';
 import { useEffect, useState } from 'react';
 
+import AnalyticsContext from '@/analytics/AnalyticsContext';
 import { ConfigContext } from '@/context/ConfigContext';
+import { Event } from '@/enums/events';
 import { Logo } from '@/ui/Logo';
 import { SearchButton } from '@/ui/search/Search';
 import getLogoHref from '@/utils/getLogoHref';
@@ -17,8 +19,6 @@ import { TopbarCta } from '../types/config';
 import Icon from './Icon';
 import { ThemeToggle } from './ThemeToggle';
 import { VersionSelect } from './VersionSelect';
-import AnalyticsContext from '@/analytics/AnalyticsContext';
-import { Event } from '@/enums/events';
 
 export function NavPopover({
   display = 'md:hidden',
@@ -122,7 +122,12 @@ function GitHubCta({ button }: { button: TopbarCta }) {
 
   return (
     <li className="cursor-pointer">
-      <a href={button.url} target="_blank" rel="noreferrer" onClick={() => trackCtaClick({ url: 'button.url', type: 'github' })}>
+      <a
+        href={button.url}
+        target="_blank"
+        rel="noreferrer"
+        onClick={() => trackCtaClick({ url: 'button.url', type: 'github' })}
+      >
         <div className="group flex items-center space-x-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -219,8 +224,8 @@ export function NavItems() {
   const trackNavigationClick = analyticsMediator.createEventListener(Event.HeaderNavItemClick);
 
   const onClickNavigation = (name: string | undefined, url: string) => {
-    trackNavigationClick({ name, url })
-  }
+    trackNavigationClick({ name, url });
+  };
 
   return (
     <>
