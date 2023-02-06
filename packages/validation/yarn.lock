@@ -1215,10 +1215,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@mintlify/ts-config@1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@mintlify/ts-config/-/ts-config-1.0.4.tgz#aed0696804c03cfb89102d1fe93edb0d24f7ac4a"
-  integrity sha512-VsmdhlfNvdt/1H28OC1s7fIveoeOeN7DFKjw8xLka4M1PhFQ16smg/idefCT2P6ajsXJwlCTES/pZrxbEE0RbQ==
+"@mintlify/ts-config@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@mintlify/ts-config/-/ts-config-1.0.7.tgz#872b14d30013cf3a68e6aed8362e916b0c3b9261"
+  integrity sha512-VXfLy9+TeNXmOJY/4WgnpQfYBEH1nXwj5iYMqe8xEwCcrOX3xhVF/J+cBpIbGXzlp7ZnnVmCxx7fkeHJub1zzQ==
 
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
@@ -1239,10 +1239,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@tsconfig/next@1.x":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@tsconfig/next/-/next-1.0.5.tgz#045d4d95839829e31d928404ab43a3c5b5169ee7"
-  integrity sha512-ZpAlWqSGE3ZWFqKmI3FiQEu8WcBF3uii1z1ovedMcALflsRoJnExp3YzWQ/fU7lzGmYtfX1CWFpf1Gl8aEC6GQ==
+"@tsconfig/recommended@1.x":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@tsconfig/recommended/-/recommended-1.0.2.tgz#1e198237225933e319718f082e78366e9f159d71"
+  integrity sha512-dbHBtbWBOjq0/otpopAE02NT2Cm05Qe2JsEKeCf/wjSYbI2hz8nCqnpnOJWHATgjDz4fd3dchs3Wy1gQGjfN6w==
 
 "@types/babel__core@^7.1.14":
   version "7.1.20"

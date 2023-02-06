@@ -1,7 +1,9 @@
 {
   "extends": "@mintlify/ts-config",
   "compilerOptions": {
+    "moduleResolution": "node",
+    "declaration": true,
     "noEmit": false
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts"]
 }
