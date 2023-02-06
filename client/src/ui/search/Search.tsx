@@ -299,7 +299,7 @@ export function SearchProvider({
   const onSelectOption = (hit: Hit) => {
     onClose();
 
-    const url = `/${hit.slug}`;
+    const path = `/${hit.slug}`;
     const section =
       hit._highlightResult.subheading?.matchLevel === 'full'
         ? `#${hit.subheading}`
@@ -310,10 +310,10 @@ export function SearchProvider({
       .toLowerCase()
       .replaceAll(' ', '-')
       .replaceAll(/[^a-zA-Z0-9-_#]/g, '');
-    router.push(`${url}${sectionSlug}`);
+    router.push(`${path}${sectionSlug}`);
 
     trackSearchResultClick({
-      url,
+      path,
       section: sectionSlug ? sectionSlug : undefined,
     });
 

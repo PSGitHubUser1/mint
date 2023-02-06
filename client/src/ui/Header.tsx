@@ -126,7 +126,7 @@ function GitHubCta({ button }: { button: TopbarCta }) {
         href={button.url}
         target="_blank"
         rel="noreferrer"
-        onClick={() => trackCtaClick({ url: 'button.url', type: 'github' })}
+        onClick={() => trackCtaClick({ url: button.url, type: 'github' })}
       >
         <div className="group flex items-center space-x-3">
           <svg

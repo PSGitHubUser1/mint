@@ -88,13 +88,13 @@ export function MDXContentController({
   // Log event when scroll to bottom
   useEffect(() => {
     if (checkIfAtBottomOfPage()) {
-      trackScrollToBottom({ url: Router.asPath });
+      trackScrollToBottom({ path: Router.asPath });
       return;
     }
 
     const onScroll = () => {
       if (checkIfAtBottomOfPage()) {
-        trackScrollToBottom({ url: Router.asPath });
+        trackScrollToBottom({ path: Router.asPath });
         window.removeEventListener('scroll', onScroll);
       }
     };
