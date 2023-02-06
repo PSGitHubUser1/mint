@@ -217,6 +217,45 @@ Example: `mintlify`
   </Expandable>
 </ResponseField>
 
+<ResponseField name="repo" type="Repo">
+  Repo information to activate the "Edit this page" and "Raise an issue"
+  buttons.
+  <Expandable title="Repo">
+    <ResponseField title="GitHub">
+      GitHub repo information.
+      ```json GitHub
+      "repo": {
+        "github": {
+          "owner": "mintlify",
+          "repo": "docs",
+          "deployBranch": "main",
+          "contentDirectory": "docs",
+          "isPrivate": false
+        }
+      }
+      ```
+      <Expandable title="GitHub">
+        <ResponseField name="repo" type="string">
+          The name of the repo.
+        </ResponseField>
+        <ResponseField name="owner" type="string">
+          The owner of the repo.
+        </ResponseField>
+        <ResponseField name="deployBranch" type="string">
+          The branch of the repo.
+        </ResponseField>
+        <ResponseField name="contentDirectory" type="string">
+          The path where the documentation content lives (the path to the
+          `mint.json` file).
+        </ResponseField>
+        <ResponseField name="isPrivate" type="boolean" default="false">
+          Whether the repo is private.
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
 <ResponseField name="hideFeedbackButtons" type="boolean" default="false">
   Whether or not to hide the edit suggestion and raise and issue buttons at the
   top of every page. Defaults to `false`
