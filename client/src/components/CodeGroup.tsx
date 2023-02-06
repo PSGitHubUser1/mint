@@ -3,8 +3,10 @@ import {
   CodeBlockProps,
   CodeGroupProps,
 } from '@mintlify/components';
-import { ReactElement } from 'react';
+import { ReactElement, useContext } from 'react';
 
+import AnalyticsContext from '@/analytics/AnalyticsContext';
+import { Event } from '@/enums/events';
 import { useColors } from '@/hooks/useColors';
 
 export function CodeGroup({
@@ -15,11 +17,15 @@ export function CodeGroup({
   isSmallText?: boolean;
 }) {
   const colors = useColors();
+  const analyticsMediator = useContext(AnalyticsContext);
+  const trackCodeBlockCopy = analyticsMediator.createEventListener(Event.CodeBlockCopy);
+
   return (
     <GenericCodeGroup
       selectedColor={colors.primaryLight}
-      copiedTooltipColor={colors.primaryDark}
+      tooltipColor={colors.primaryDark}
       isSmallText={isSmallText}
+      onCopied={(_, textToCopy) => trackCodeBlockCopy({ code: textToCopy })}
     >
       {children}
     </GenericCodeGroup>

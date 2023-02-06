@@ -6,4 +6,5 @@ export enum Event {
   ScrollToBottom = 'scroll_to_bottom',
   APIPlaygroundCall = 'api_playground_call',
   SearchResultClick = 'search_result_click',
+  CodeBlockCopy = 'code_block_copy',
 }
