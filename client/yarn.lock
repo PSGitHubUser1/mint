@@ -1695,10 +1695,10 @@
     is-absolute-url "^4.0.1"
     lodash.set "^4.3.2"
 
-"@mintlify/prettier-config@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@mintlify/prettier-config/-/prettier-config-1.0.1.tgz#d1c4b2b3d5078e4a2872f96cfa4ed1b60b332f6c"
-  integrity sha512-43rARzj4Xc5ZOuLS3VqgUv3QZVSSSrNaOhFgLWNUyliihj4U7oMk7ZwzriNsa5q02GGgyD84R2cI4OY/6ytAuQ==
+"@mintlify/prettier-config@1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@mintlify/prettier-config/-/prettier-config-1.0.5.tgz#54088bdfa4907dc7deb0bfbf63bbf022a44efb50"
+  integrity sha512-hrvPuCTFkBeCiUu3DEUFwYouvptSV/AUDWEfERGkqUd+x+RPQiePW1rsDBXPOjRmq7NCecWxJPSF141lrKgD1Q==
 
 "@next/bundle-analyzer@12.3.4":
   version "12.3.4"
